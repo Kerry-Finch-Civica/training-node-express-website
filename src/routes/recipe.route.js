@@ -9,6 +9,7 @@ router.get('/create', async (req, res) => {
   res.render('create');
 });
 
+
 // Accepts the data submitted from the create page and calls the controller to persist it
 router.post('/create', async (req, res, next) => {
   try {
@@ -16,6 +17,16 @@ router.post('/create', async (req, res, next) => {
     res.redirect('/recipes'); // Redirect to the list of recipes upon successful creation
   } catch (err) {
     next(new CustomException('Unable to create recipe', err));
+  }
+});
+
+// Accepts the data submitted from the edit page and calls the controller to persist it
+router.post('/:id/edit', async (req, res, next) => {
+  try {
+    await recipeController.updateRecipe(req.params.id, req.body);
+    res.redirect('/recipes'); // Redirect to the list of recipes upon successful creation
+  } catch (err) {
+    next(new CustomException('Unable to update recipe', err));
   }
 });
 
@@ -44,6 +55,19 @@ router.get('/:id', async (req, res, next) => {
       throw new NotFoundException('recipe not found');
     }
     res.render('view', recipe);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Gets a recipe by the ID supplied in the URL and renders the edit page
+router.get('/:id/edit', async (req, res, next) => {
+  try {
+    const recipe = await recipeController.getRecipe(req.params.id);
+    if (!recipe) {
+      throw new NotFoundException('recipe not found');
+    }
+    res.render('edit', recipe);
   } catch (err) {
     next(err);
   }

@@ -15,7 +15,7 @@ const getRecipes = async (searchTerm) => {
 
 const getRecipe = async (id) => axios.get(`http://localhost:3002/recipes/${id}`);
 
-const updateRecipe = async (id, recipe) => {};
+const updateRecipe = async (id, recipe) => axios.put(`http://localhost:3002/recipes/${id}`, recipe);
 
 module.exports = {
   createRecipe,

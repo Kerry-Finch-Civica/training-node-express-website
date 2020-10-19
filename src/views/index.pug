@@ -20,4 +20,6 @@ block content
               a(href=`recipes/${recipe.recipe_id}` id='title' name='title') #{recipe.title}
             td(id='short-description' name='short_description') #{recipe.short_description}
             td(id='preparation-time' name='preparation_time') #{recipe.preparation_time}
+
+  a(href="http://localhost:3001/recipes/create"): input.btn.btn-primary.btn-lg(type="button", value = "Create new recipe")
     
