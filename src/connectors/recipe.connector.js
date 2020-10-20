@@ -6,7 +6,7 @@ const axios = require('axios');
 
 const createRecipe = async (recipe) => axios.post(`http://localhost:3002/recipes`, recipe);
 
-const deleteRecipe = async (id) => {};
+const deleteRecipe = async (id) => axios.delete(`http://localhost:3002/recipes/${id}`);
 
 const getRecipes = async (searchTerm) => {
   const searchUrlPart = searchTerm ? `search=${searchTerm}` : '';

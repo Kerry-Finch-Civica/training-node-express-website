@@ -1,0 +1,14 @@
+extends layout.pug
+
+block header
+  title Edit step
+
+block content
+  .py-3.text-center
+    h2.bd-title Edit step #{step.step_number} for #{recipe.title} recipe
+  .row
+    form.w-100.needs-validation(method='post')
+      .mb-3
+        label(for='step-text') Title
+        input.form-control(type='text' id='step-text' name='step_text' value=`${step.step_text}`)
+      input.btn.btn-primary.btn-lg(type='submit', value='Save')

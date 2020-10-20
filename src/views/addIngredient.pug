@@ -1,0 +1,17 @@
+extends layout.pug
+
+block header
+  title Add a recipe ingredient
+
+block content
+  .py-3.text-center
+    h2.bd-title Add a recipe ingredient to #{recipe.title}
+  .row
+    form.w-100.needs-validation(method='post')
+      .mb-3
+        label(for='ingredient_id') Ingredient number
+        input.form-control(type='text' id='ingredient-id' name='ingredient_id')
+      .mb-3
+        label(for='name') Ingredient
+        input.form-control(type='text' id='name' name='name')
+      input.btn.btn-primary.btn-lg(type='submit', value='Save')

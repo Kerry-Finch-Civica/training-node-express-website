@@ -14,9 +14,19 @@ block content
         p(id='preparation-time' name='preparation_time') Preparation time: #{recipe.preparation_time}
       .mb-3
         h6 Instructions:
-        // TODO: Display recipe steps as a list of numbered instructions
-        p(id='recipe-steps' name='recipe_steps') #{recipe.recipe_steps}
+        each step in steps
+          p(id='recipe-steps' name='step') #{step.step_number}. #{step.step_text}
+            a(href=`${recipe.recipe_id}/editStep/${step.step_number}`): input.btn.btn-primary.btn-lg(value='Edit step')
+            a(href=`${recipe.recipe_id}/deleteStep`): input.btn.btn-primary.btn-lg(value='Delete step')
+      .mb-3
+        h6 Ingredients:
+        each ingredient in ingredients
+          p(id='recipe-ingredients' name='ingredients') #{ingredient.name}
+            a(href=`${recipe.recipe_id}/editIngredient`): input.btn.btn-primary.btn-lg(value='Edit ingredient')
+            a(href=`${recipe.recipe_id}/deleteIngredient`): input.btn.btn-primary.btn-lg(value='Delete ingredient')
+
       a(href=`${recipe.recipe_id}/edit`): input.btn.btn-primary.btn-lg(, value='Edit recipe')
-      a(href=`${recipe.recipe_id}/editSteps`): input.btn.btn-primary.btn-lg(value='Edit recipe steps')
-      a(href=`${recipe.recipe_id}/editIngredients`): input.btn.btn-primary.btn-lg(value='Edit recipe ingredients')
+      a(href=`${recipe.recipe_id}/delete`): input.btn.btn-primary.btn-lg(, value='Delete recipe')
+      a(href=`${recipe.recipe_id}/addStep`): input.btn.btn-primary.btn-lg(value='Add a recipe step')
+      a(href=`${recipe.recipe_id}/addIngredient`): input.btn.btn-primary.btn-lg(value='Add a recipe ingredient')
     

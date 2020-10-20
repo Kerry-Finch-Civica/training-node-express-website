@@ -8,6 +8,14 @@ const updateRecipeIngredients = async (recipeId, recipeIngredients) => {
   return axios.patch(`http://localhost:3002/recipes/${recipeId}/recipe-ingredients`, recipeIngredients);
 };
 
+const getRecipeIngredients = async (recipeId) => {
+  return axios.get(`http://localhost:3002/recipes/${recipeId}/recipe-ingredients`);
+};
+
+const createRecipeIngredient = async (recipeIngredient) => axios.post(`http://localhost:3002/recipes/${recipeIngredient.recipe_id}/recipe-ingredients`, recipeIngredient);
+
 module.exports = {
   updateRecipeIngredients,
+  getRecipeIngredients,
+  createRecipeIngredient,
 };
